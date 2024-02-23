@@ -29,17 +29,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.waseem.akram.R
-import com.waseem.akram.ui.theme.ZikirmatikTheme
+import com.waseem.akram.ui.theme.Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ZikirmatikTheme {
+            Theme {
                 val context = LocalContext.current
                 NavigationDrawer(context)
                 BodyContent(context)
@@ -69,7 +69,7 @@ fun BodyContent(context: Context){
                 .padding(top = 55.dp, start = 45.dp, end = 30.dp)
         ){
             Image(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                painter = painterResource(id = R.drawable.emo),
                 contentDescription ="menu",
                 modifier = Modifier
                     .clickable { navigateClick = !navigateClick }
@@ -83,7 +83,7 @@ fun BodyContent(context: Context){
             verticalArrangement = Arrangement.Center
         ){
             Text(
-                text ="drawer menu",
+                text ="Menu For You",
                 fontWeight = FontWeight.Bold,
                 fontFamily = FontFamily.Serif,
                 fontSize = 20.sp
@@ -92,7 +92,6 @@ fun BodyContent(context: Context){
 
     }
 }
-
 @Composable
 fun NavigationDrawer(context: Context){
     Column(
@@ -101,28 +100,36 @@ fun NavigationDrawer(context: Context){
             .background(MaterialTheme.colors.primary)
     ){
         NavigationItem(
-            resId = R.drawable.ic_launcher_background,
-            text ="profile",
+            resId = R.drawable.ic_user,
+            text ="Profile",
             topPadding = 145.dp
         ){}
         NavigationItem(
-            resId = R.drawable.ic_launcher_foreground,
-            text = "Textttt",
+            resId = R.drawable.ic_share,
+            text = "Share",
             itemClicked = {
                 val intent = Intent()
                 intent.action=Intent.ACTION_SEND
-                intent.putExtra(Intent.EXTRA_TEXT,"lalalaa")
+                intent.putExtra(Intent.EXTRA_TEXT,"Who Are You????????")
                 intent.type="text/plain"
-                context.startActivity(Intent.createChooser(intent, "gegegegeg"))
+                context.startActivity(Intent.createChooser(intent, "Bruh"))
             }
         )
         NavigationItem(
-            resId = R.drawable.ic_launcher_background,
-            text = "heheekekskd",
+            resId = R.drawable.star_2,
+            text = "Navigation 2",
             itemClicked = {
-                Toast.makeText(context, "oldu mu", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "No Way", Toast.LENGTH_LONG).show()
             }
         )
+        NavigationItem(
+            resId = R.drawable.dont,
+            text = "Don't Press",
+            itemClicked = {
+                Toast.makeText(context, "I told u", Toast.LENGTH_LONG).show()
+            }
+        )
+
 
         Row(
             modifier = Modifier
